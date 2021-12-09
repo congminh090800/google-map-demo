@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_map_demo/current_location_screen.dart';
+import 'package:google_map_demo/location_tracking_screen.dart';
 import 'package:google_map_demo/map_screen.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -83,6 +84,15 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             child: const Text("Map screen"),
+          ),
+          OutlinedButton(
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const LocationTrackingScreen(),
+              ),
+            ),
+            child: const Text("Location tracking screen"),
           )
         ],
       ),
