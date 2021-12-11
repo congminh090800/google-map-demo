@@ -55,12 +55,14 @@ class _LocationTrackingScreenState extends State<LocationTrackingScreen> {
     return byteData.buffer.asUint8List();
   }
 
-  void updateMarkerAndCircle(LocationData newLocalData, Uint8List imageData) {
-    LatLng latlng = LatLng(newLocalData.latitude!, newLocalData.longitude!);
+  void updateMarkerAndCircle(
+      LocationData newLocationData, Uint8List imageData) {
+    LatLng latLng =
+        LatLng(newLocationData.latitude!, newLocationData.longitude!);
     setState(() {
       marker = Marker(
           markerId: const MarkerId("user"),
-          position: latlng,
+          position: latLng,
           draggable: false,
           rotation: 0,
           zIndex: 2,
@@ -69,10 +71,10 @@ class _LocationTrackingScreenState extends State<LocationTrackingScreen> {
           icon: BitmapDescriptor.fromBytes(imageData));
       circle = Circle(
           circleId: const CircleId("user"),
-          radius: newLocalData.accuracy!,
+          radius: newLocationData.accuracy!,
           zIndex: 1,
           strokeColor: Colors.blue,
-          center: latlng,
+          center: latLng,
           fillColor: Colors.blue.withAlpha(70));
     });
   }
