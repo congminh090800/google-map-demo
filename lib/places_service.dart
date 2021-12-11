@@ -1,14 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
-import 'package:google_map_demo/placesearch_model.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert' as convert;
-import '.env.dart';
-
-import 'dart:io';
-
 import 'package:http/http.dart';
+
+import '.env.dart';
 
 class Place {
   String? streetNumber;
@@ -61,7 +56,9 @@ class PlaceApiProvider {
         // compose suggestions in a list
         var data = result['predictions'];
         debugPrint('movieTitle: $data');
-        return result['predictions'].map<Suggestion>((p) => Suggestion(p['place_id'], p['description'])).toList();
+        return result['predictions']
+            .map<Suggestion>((p) => Suggestion(p['place_id'], p['description']))
+            .toList();
       }
       if (result['status'] == 'ZERO_RESULTS') {
         return [];
@@ -80,7 +77,8 @@ class PlaceApiProvider {
     if (response.statusCode == 200) {
       final result = json.decode(response.body);
       if (result['status'] == 'OK') {
-        final components = result['result']['address_components'] as List<dynamic>;
+        final components =
+            result['result']['address_components'] as List<dynamic>;
         // build result
         final place = Place();
         components.forEach((c) {

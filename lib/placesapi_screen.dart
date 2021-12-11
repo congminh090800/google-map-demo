@@ -1,11 +1,6 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:google_map_demo/address_search.dart';
-import 'package:google_map_demo/models/place_model.dart';
 import 'package:google_map_demo/places_service.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:provider/provider.dart';
 
 class PlacesApiScreen extends StatefulWidget {
   const PlacesApiScreen({Key? key, this.title}) : super(key: key);
@@ -51,7 +46,8 @@ class _PlacesApiScreenState extends State<PlacesApiScreen> {
                 );
                 // This will change the text displayed in the TextField
                 if (result != null) {
-                  final placeDetails = await PlaceApiProvider().getPlaceDetailFromId(result.placeId);
+                  final placeDetails = await PlaceApiProvider()
+                      .getPlaceDetailFromId(result.placeId);
                   setState(() {
                     _controller.text = result.description;
                     _streetNumber = placeDetails.streetNumber ?? "";
